@@ -23,38 +23,24 @@ class User():
         self.id = str(uuid.uuid4())
 
     @property
-    def password(self):
-        """
-        Password getter
-        """
-        return self.__password
+def password(self):
+    """
+    Password getter
+    """
+    return self.__password
 
-    @password.setter
-    def password(self, pwd):
-        """
-        Password setter:
-        - `None` if `pwd` is `None`
-        - `None` if `pwd` is not a string
-        - Hash `pwd` in MD5 before assign to `__password`
-        """
-        if pwd is None or type(pwd) is not str:
-            self.__password = None
-        else:
-            self._password = hashlib.md5(pwd.encode()).hexdigest().lower()
-
-    def is_valid_password(self, pwd):
-        """
-        Valid password:
-        - `False` if `pwd` is `None`
-        - `False` if `pwd` is not a string
-        - `False` if `__password` is `None`
-        - Compare `__password` and the MD5 value of `pwd`
-        """
-        if pwd is None or type(pwd) is not str:
-            return False
-        if self.__password is None:
-            return False
-        return hashlib.md5(pwd.encode()).hexdigest().upper() == self.__password
+@password.setter
+def password(self, pwd):
+    """
+    Password setter:
+    - `None` if `pwd` is `None`
+    - `None` if `pwd` is not a string
+    - Hash `pwd` in MD5 before assign to `__password`
+    """
+    if pwd is None or type(pwd) is not str:
+        self.__password = None
+    else:
+        self.__password = hashlib.md5(pwd.encode()).hexdigest().lower()  # Corrected line
 
 
 if __name__ == '__main__':
